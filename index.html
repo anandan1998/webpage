@@ -9,503 +9,1224 @@
     content="Portfolio of Ananthapathmanabhan Ratheesh Kumar – Cloud & DevOps Engineer focused on GCP, automation, and reliability."
   />
   <meta name="author" content="Ananthapathmanabhan R" />
+  <link rel="shortcut icon" href="favicon.png" />
+  
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #34d399;
+      --accent-soft: rgba(52, 211, 153, 0.15);
+      --accent-strong: #22c55e;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: #1f2933;
+      --card-bg: #060b1a;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.55);
+      --radius-xl: 18px;
+      --radius-full: 999px;
+      --transition-fast: 0.18s ease-out;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        Roboto, "Segoe UI", sans-serif;
+    }
 
-   <!-- Mobile Specific Metas
-   ================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    * {
+      box-sizing: border-box;
+    }
 
-	<!-- CSS
-    ================================================== -->
-   <link rel="stylesheet" href="css/default.css">
-   <link rel="stylesheet" href="css/layout.css">
-   <link rel="stylesheet" href="css/media-queries.css">
-   <link rel="stylesheet" href="css/magnific-popup.css">
+    body {
+      margin: 0;
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top, #111827 0, #020617 50%, #020617 100%);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
 
-   <!-- Script
-   ================================================== -->
-	<script src="js/modernizr.js"></script>
-	<script src="https://kit.fontawesome.com/e510e29084.js" crossorigin="anonymous"></script>
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-   <!-- Favicons
-	================================================== -->
-	<link rel="shortcut icon" href="favicon.png" >
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(20px);
+      background: linear-gradient(
+        to bottom,
+        rgba(2, 6, 23, 0.95),
+        rgba(2, 6, 23, 0.7),
+        transparent
+      );
+      border-bottom: 1px solid rgba(15, 23, 42, 0.7);
+      transition: all 0.3s ease;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.5rem;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .nav-logo-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 10%, #4ade80, #22c55e 40%, #059669 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      box-shadow: 0 0 20px rgba(52, 211, 153, 0.6);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(52, 211, 153, 0.6);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(52, 211, 153, 0.9);
+      }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.85rem;
+    }
+
+    .nav-link {
+      position: relative;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.25rem 0;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), var(--accent-strong));
+      border-radius: 999px;
+      transition: width var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        gap: 0.75rem;
+        font-size: 0.75rem;
+      }
+      
+      .nav-logo span {
+        display: none;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      padding: 4.5rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(52, 211, 153, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 880px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: var(--radius-full);
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.4;
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 4vw, 2.9rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      animation: fadeInUp 0.6s ease-out 0.2s backwards;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #a5b4fc, #34d399, #f97316);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 5s ease infinite;
+      background-size: 200% 200%;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 34rem;
+      margin-bottom: 1.3rem;
+      animation: fadeInUp 0.6s ease-out 0.4s backwards;
+    }
+
+    .hero-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.6s ease-out 0.5s backwards;
+    }
+
+    .pill {
+      padding: 0.32rem 0.7rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      font-size: 0.72rem;
+      background: rgba(15, 23, 42, 0.75);
+      color: #e5e7eb;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    .pill:hover {
+      border-color: rgba(148, 163, 184, 0.5);
+      transform: translateY(-2px);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .pill-accent {
+      border-color: rgba(74, 222, 128, 0.7);
+      background: var(--accent-soft);
+      color: #bbf7d0;
+    }
+
+    .pill-accent:hover {
+      border-color: rgba(74, 222, 128, 0.9);
+      background: rgba(52, 211, 153, 0.25);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.6s ease-out 0.6s backwards;
+    }
+
+    .btn {
+      font-size: 0.85rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast), background var(--transition-fast),
+        border-color var(--transition-fast), color var(--transition-fast);
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #022c22;
+      box-shadow: 0 18px 45px rgba(34, 197, 94, 0.35);
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 55px rgba(34, 197, 94, 0.5);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.7);
+      color: var(--text-main);
+      border-color: rgba(148, 163, 184, 0.35);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 1);
+      transform: translateY(-2px);
+      border-color: rgba(148, 163, 184, 0.6);
+    }
+
+    .btn-ghost:active {
+      transform: translateY(0);
+    }
+
+    .hero-footnote {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      animation: fadeInUp 0.6s ease-out 0.7s backwards;
+    }
+
+    .hero-footnote strong {
+      color: #e5e7eb;
+    }
+
+    .hero-right {
+      position: relative;
+      animation: fadeInUp 0.6s ease-out 0.8s backwards;
+    }
+
+    .hero-card {
+      border-radius: 24px;
+      background: radial-gradient(circle at top left, #0f172a 0, #020617 52%);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 1.3rem;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(52, 211, 153, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-card-title {
+      font-size: 0.82rem;
+      color: #e5e7eb;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-card-title span {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .hero-card-badge {
+      font-size: 0.7rem;
+      padding: 0.18rem 0.6rem;
+      border-radius: var(--radius-full);
+      background: rgba(2, 6, 23, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: #e5e7eb;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-bottom: 1.1rem;
+      font-size: 0.75rem;
+    }
+
+    .metric-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 16px;
+      padding: 0.6rem 0.7rem;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      transition: all 0.3s ease;
+    }
+
+    .metric-card:hover {
+      border-color: rgba(52, 211, 153, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .metric-label {
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .metric-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .metric-value span {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-left: 0.25rem;
+      font-weight: 400;
+    }
+
+    .hero-card-footer {
+      border-top: 1px dashed rgba(55, 65, 81, 0.9);
+      padding-top: 0.7rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.75rem;
+      align-items: center;
+    }
+
+    .hero-chip {
+      font-size: 0.7rem;
+      color: #9ca3af;
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 2rem 0 0.75rem;
+    }
+
+    .section-header {
+      margin-bottom: 0.9rem;
+    }
+
+    .section-kicker {
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    .section-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 34rem;
+    }
+
+    /* GRID SECTIONS */
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 2fr);
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 880px) {
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 1.1rem 1.1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(52, 211, 153, 0.3);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      transform: translateY(-3px);
+    }
+
+    .card + .card {
+      margin-top: 0.75rem;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.35rem;
+    }
+
+    .chip {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-full);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: #e5e7eb;
+      transition: all 0.2s ease;
+    }
+
+    .chip:hover {
+      border-color: rgba(148, 163, 184, 0.5);
+      transform: scale(1.05);
+    }
+
+    .card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: #f9fafb;
+    }
+
+    .card-subtitle {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .card-meta {
+      font-size: 0.74rem;
+      color: #6b7280;
+      margin-bottom: 0.45rem;
+    }
+
+    .card-list {
+      padding-left: 1.05rem;
+      margin: 0;
+      font-size: 0.8rem;
+      color: #d1d5db;
+      line-height: 1.6;
+    }
+
+    .card-list li {
+      margin-bottom: 0.3rem;
+    }
+
+    /* SKILLS GRID */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 640px) {
+      .skills-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .skills-category-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: #f9fafb;
+    }
+
+    .skills-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .skills-badge {
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-full);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 0.72rem;
+      transition: all 0.2s ease;
+    }
+
+    .skills-badge:hover {
+      border-color: rgba(52, 211, 153, 0.5);
+      background: rgba(52, 211, 153, 0.1);
+      transform: scale(1.05);
+    }
+
+    /* CONTACT */
+    .contact-card {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.9rem;
+      align-items: center;
+    }
+
+    .contact-main {
+      font-size: 0.9rem;
+    }
+
+    .contact-main strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .social-link {
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      color: #e5e7eb;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 1.5rem 0 1.75rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* ANCHOR OFFSET */
+    section {
+      scroll-margin-top: 80px;
+    }
+
+    /* LOADING ANIMATION */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .page {
+      animation: fadeIn 0.5s ease-out;
+    }
+  </style>
 </head>
-
 <body>
-
-   <!-- Header
-   ================================================== -->
-   <header id="home">
-
-      <nav id="nav-wrap">
-
-         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
-	      <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
-
-         <ul id="nav" class="nav">
-            <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
-            <li><a class="smoothscroll" href="#about">About</a></li>
-	         <li><a class="smoothscroll" href="#resume">Resume</a></li>
-            <!--<li><a class="smoothscroll" href="#portfolio">Works</a></li>-->
-            <li><a class="smoothscroll" href="#portfolio">Portfolio</a></li>
-            <li><a class="smoothscroll" href="#contact">Contact</a></li>
-         </ul> <!-- end #nav -->
-
-      </nav> <!-- end #nav-wrap -->
-
-      <div class="row banner">
-         <div class="banner-text">
-            <h1 class="responsive-headline">Ananthapathmanabhan R</h1>
-            <h3>Curious learner, developer and analyzer too. Self motivated Engineering student at Rajiv Gandhi Institute of Technology Kottayam. 
-              Building actions with voice assistant and solving problems in minor scale. Engaged in using Google Cloud services.
-
-            <hr />
-            <ul class="social">
-                <li><a href="https://github.com/anandan1998"><i class="fab fa-github"></i></a></li>                    
-               <li><a href="https://twitter.com/anandan1998"><i class="fab fa-twitter"></i></a></li>
-               <li><a href="https://www.linkedin.com/in/ananthapathmanabhan-r-90820717a/"><i class="fab fa-linkedin"></i></a></li>
-              
-            </ul>
-         </div>
+  <div class="page">
+    <!-- NAV -->
+    <header class="nav">
+      <div class="nav-inner">
+        <div class="nav-logo">
+          <div class="nav-logo-badge">A</div>
+          <span>Cloud Engineer · GCP</span>
+        </div>
+        <nav class="nav-links">
+          <a href="#about" class="nav-link">About</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#experience" class="nav-link">Experience</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
       </div>
+    </header>
 
-      <p class="scrolldown">
-         <a class="smoothscroll" href="#about"><i class="icon-down-circle"></i></a>
-      </p>
-
-   </header> <!-- Header End -->
-
-
-   <!-- About Section
-   ================================================== -->
-   <section id="about">
-
-      <div class="row">
-
-         <div class="three columns">
-
-            <img class="profile-pic"  src="images/IMG.jpg" alt="" />
-
-         </div>
-
-         <div class="nine columns main-col">
-
-            <h2>About Me</h2>
-
-            <p >Curious learner. I extract a great deal of joy by solving problems and analyzing those things. Doing everything in different way is my passion. 
-              
-            </p>
-            
-                    <p>I was in kindergarten when I first introduced to computer in my home.Then I could see computer as a game console.</p>
-                    
-                    <p>In 2nd grade, I was introduced to internet using dialup. Few years after that tranferred into modem.</p>
-                    
-                    <p>I did my higher secondary education in bio maths. So in that I don't have computer as a subject and I don't know anything about programming at that time. </p>
-                    
-                    <p>After getting into collage I started learning how to code. 1st it was boring for me because I didn't understand what they were teaching. So I started learning myself. When started getting outputs for relatively bigger programms. Then I become so much interested in programming.</p>
-                    
-                  
-                    <p> Never stopped since.</p>
-		    
-            
-            
-
-            <div class="row">
-
-               <div class="columns contact-details">
-
-                  <h2>Contact Details</h2>
-                  <a href="mailto:contact@anandan.in?Subject=Hello" target="_top"> contact@anandan.in </a>
-
-               </div>
-
-               <div class="columns download">
-                  <p>
-                     <a href="https://drive.google.com/file/d/15DkduFSf7b6uAPqH0UGl9ybBd92MWZdx/view?usp=sharing" class="button"><i class="fa fa-download"></i>Download Resume</a>
-                  </p>
-               </div>
-
-            </div> <!-- end row -->
-
-         </div> <!-- end .main-col -->
-
-      </div>
-
-   </section> <!-- About Section End-->
-
-
-   <!-- Resume Section
-   ================================================== -->
-   <section id="resume">
-
-      <!-- Work  -->
-      <div class="row work">
-
-         <div class="three columns header-col">
-            <h1><span>Work</span></h1>
-         </div>
-
-         <div class="nine columns main-col">
-            <div class="row item">
-                        
-               <div class="twelve columns">
-
-                   <h3>Game Developement </h3>
-                   <p class="info">Game Developer using unity. <span>&bull;</span> <em class="date"></em></p>
-
-                   <p>
-                     
-                       <ul>
-                       <li> Obstacle skipping 3D game.</li>
-                       <li> Dashing rider 2D game.</li>
-                       <li> </li>
-                       <li> </li>
-                       <li>  </li>
-                       </ul>
-                   </p>
-
-               </div>
-
-           </div> <!-- item end -->
-
-           <div class="row item">
-                        
-            <div class="twelve columns">
-
-                <h3>Machine learning</h3>
-                <p class="info">Participant in Techradiance 19 Grand Final in ML <span>&bull;</span> <em class="date"></em></p>
-
-                <p>
-                    
-                    <ul>
-                    <li> It was a National Level Championship CS&T Grand final of Techradiance’19 in association with Techfest at IIT Bombay organised by Harbour Technologies. </li>
-                    <li></li>
-                    <li> </li>
-                    </ul>
-                </p>
-
+    <main class="container">
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-tag">
+              <span class="hero-tag-dot"></span>
+              <span>Available for cloud / platform roles</span>
             </div>
-
-        </div> <!-- item end -->
-		          <div class="row item">
-                        
-                    <div class="twelve columns">
-
-                        <h3>Qwiklabs</h3>
-                        <p class="info">Quests<span>&bull;</span> <em class="date"></em></p>
-
-                        <p>Earned Google Badges for completing quests. 
-                            <br>
-                            <ul>
-                            <li> Build Interactive Apps using Google Assistant. </li>
-                            <li> Artificial Intelligence and Machine Learning.</li>
-				    		<li> Cloud Study Jam-Kubernetes Engine.</li>
-                            <li> </li>
-                            </ul>
-                        </p>
-
-                    </div>
-
-                </div> <!-- item end -->
-
-                <div class="row item">
-                        
-                    <div class="twelve columns">
-
-                        <h3>Google Actions </h3>
-                        <p class="info">Google Action Developer and community member. <span>&bull;</span> <em class="date"></em></p>
-
-                        <p>
-                            Devloped a Google Action named 'Science Bro' in English and मुद्रा खोज in Hindi was approved. <br>
-                            <ul>
-                            <li> Deployment successfully completed.</li>
-                            <li> Test  using 'Talk to science bro' in Assistant.</li>
-                            <li> </li>
-                            <li> </li>
-                            <li>  </li>
-                            </ul>
-                        </p>
-
-                    </div>
-
-                </div> <!-- item end -->
-
-
-         </div> <!-- main-col end -->
-
-      </div> <!-- End Work -->
-	
-      <!-- Skills -->
-      <div class="row skill">
-
-         <div class="three columns header-col">
-            <h1><span>Skills</span></h1>
-         </div>
-
-         <div class="nine columns main-col">
-
-            <p>Skilled in programming languages like <b>python, C, C#. Involved in non-tech activities inside and outside the college.</b>
-		     
+            <h1 class="hero-title">
+              Hi, I'm Ananthapathmanabhan<br />
+              <span>Cloud & DevOps Engineer on GCP</span>
+            </h1>
+            <p class="hero-subtitle">
+              I design, automate, and operate cloud platforms with a focus on
+              <strong>Google Cloud</strong>, infrastructure as code, and
+              reliability. I enjoy turning complex systems into predictable,
+              observable, and developer-friendly platforms.
             </p>
 
-            <span> Technical Skills: </span><br>
-            <ul>
-                    <li>• Programming languages: Python, C, Java, C#.</li>
-		    <li>• UI design : Figma, Adobe XD.</li>
-                    <li>• Database: SQL based.</li>
-                    <li>• Frameworks and Library: Tensorflow.</li>
-                    <li>• Mobile App Development: Beginner to Flutter. </li>
-                    <li></li>
-                    <li>• Tools: Jetbrains, Visual Studio, GitHub, unity. </li>
-                    <li></li>
-
-            
-            <span> Non-Technical Skills: </span><br>
-            <ul>
-                    <li>• Drummer, violinist. </li>
-                    <li>• Leadership quality. </li>
-                    <li>• Underofficer in NCC at 12th grade.</li>
-                    <li></li>
-                    <li></li>
-                    <li>• Ready participant in college programs like spot-perfomer,violin ,drums , dance and music. </li>
-                    <li></li>
-				</div><!-- end skill-bars -->
-
-			</div> <!-- main-col end -->
-
-      </div> <!-- End skills -->
-	
-      <!-- Education -->
-      <div class="row education">
-
-         <div class="three columns header-col">
-            <h1><span>Education</span></h1>
-         </div>
-
-         <div class="nine columns main-col">
-
-            <div class="row item">
-
-               <div class="twelve columns">
-
-                  <h3>Uppsala University</h3>
-                  <p class="info">Master of Science, Computer Science <span>&bull;</span> <em class="date">2023 - 2025</em></p>
-
-                  <ul>
-                      <li> Thesis: <i>Modelling Driver Interaction in Semi-Autonomous Vehicles Using Markov Chains</i></li>
-                      <li> Data-driven modelling of state transitions (Normal/Alert/Takeover) for adaptive autonomous systems</li>
-                      <li> Research Publication: <i>Blending Participatory Design and Artificial Awareness for Trustworthy Autonomous Vehicles</i></li>
-                      <li> Accepted at IEEE RO-MAN 2025</li>
-                      <li> Developed behavioural models using Markov chains to analyse driver interaction, trust, and transparency in semi-autonomous systems</li>
-                  </ul>
-
-               </div>
-
-            </div> <!-- item end -->
-
-            <div class="row item">
-
-               <div class="twelve columns">
-
-                  <h3>Rajiv Gandhi Institute of Technology, Kottayam</h3>
-                  <p class="info">Bachelor of Technology, Computer Science and Engineering <span>&bull;</span> <em class="date">2017 - 2021</em></p>
-
-                  <ul>
-                      <li> Involved in clubs 
-                          <ul>
-                            <li> Google developer group(GDG).</li>
-                            <li> ISTE student chapter.</li>
-                            <li> IEEE student chapter.</li>
-                            <li> Tinkerhub</li>
-                          </ul>
-                      </li>
-                    <li> Chairman of WASD(Game developers and Gamers society).</li>
-                   <li> </li>
-               </div>
-
-            </div> <!-- item end -->
-
-            <div class="row item">
-
-               <div class="twelve columns">
-
-                  <h3>V V Higher Secondary School, Thamarakulam (Kerala)</h3>
-                  <p class="info">Higher Secondary<span>&bull;</span> <em class="date">March 2017</em></p>
-
-                  <ul>
-                     <li> Activities and societies:  
-                         <ul>
-                           <li>NCC-(Attended in national camp)</li>
-                           <li>Involved in state level science exhibition. </li>
-                           <li>Nallapadam club</li>
-                           <li>Science club</li>
-                           <li>Maths club</li>
-                         </ul>
-                     </li>
-                  <li> </li>
-               </div>
-
-            </div> <!-- item end -->
-            <div class="row item">
-
-               <div class="twelve columns">
-
-                  <h3>V V Higher Secondary School, Thamarakulam (Kerala)</h3>
-                  <p class="info">10th <span>&bull;</span> <em class="date">March 2015</em></p>
-                  
-                  <ul>
-                  <li> Activities and societies:  
-                     <ul>
-                       <li>NCC-(Attended in national traking camp)</li>
-                       <li>Involved in state level district exhibition. </li>
-                       <li>Seed club</li>
-                       <li>Science club</li>
-                       <li>Maths club</li>
-                     </ul>
-                 </li>
-                  
-
-               </div>
-
-            </div> <!-- item end -->
-
-
-         </div> <!-- main-col end -->
-
-      </div> <!-- End Education -->
-
-   </section> <!-- Resume Section End-->
-
-   <!-- Testimonials Section
-   ================================================== -->
-   <section id="portfolio">
-
-      <div class="text-container">
-
-         <div class="row">
-             <h1> Portfolio </h1>
-
-                <h5>Projects: </h5>
-                
-                <dl>
-                    <dt><b>Mini Project-</b> Land Mapping</dt>
-                        <dd>Land property is seperated using maps and boundaries are seperated.</dd>
-                    <dt><b>2D game</b> - Dashing rider:</dt>
-                        <dd> A 2D game made using unity.</dd>
-                    <dt><b>3D</b>Ostacles skipping</dt>
-                        <dd>A 3D game made using unity.</dd>
-                <!--    <dt><b>CodeWars:</b></dt>
-                        <dd>A web based panel to host competitive programming contest.</dd>
-                    <dt><b>Rubik’s Cube Solver:</b></dt>
-                        <dd>A python package that can look into a scrambled Rubik’s cube and output the steps to solve it.</dd>
-                    <dt><b>Teliwatch:</b></dt>
-                        <dd>An android application to retrieve details of your favourite Tv Shows. 
-                            Used to track watched episodes and to discover new series to watch.</dd>
-                    <dt><b>Blue Control:</b></dt>
-                        <dd>A system of controlling electric devices at home using phone and bluetooth.</dd>
-                    <dt><b>Pydatalearn:</b></dt>
-                        <dd>This is a library containing different data science models which can be used in machine learning applications like classification etc.
-                            </dd>
-                    <dt><b>Edusys:</b></dt>
-                        <dd>A web application to handle student attendance and marks; for educational institutions.</dd>
-                    
-                    <dt><b>Lisa:</b></dt>
-                        <dd>An intelligent chat bot capable of handling arithmetics calculations in natural 
-                            language and generic chat. </dd>
-                    
-                    <dt><b>Github Search:</b></dt>
-                        <dd>An android application to search GitHub for data.</dd>
-
-                    <dt><b>Unofficial Code Chef API:</b></dt>
-                        <dd>The CodeChef Python API to submit and check results programatically.</dd>
-
-                    <dt><b>st_datastuctures</b></dt>
-                        <dd>C library containing implementation generic of common data structures. 
-                            To be used along with any C based operating system development</dd>
-                    
-                    <dt><b>SFML-snake:</b></dt>
-                        <dd>A snake game developed in C++ using SFML. Uses Game Menu Library.</dd>
-
-                    <dt><b>Bill Management System:</b></dt>
-                        <dd>Developed in C# for a whole sale retailer near college as a favour.</dd>
-
-                    <dt><b>To-Do List:</b></dt>
-                        <dd>Standalone android application developed and designed from scratch. Used Java.</dd>
-
-                -->
-                </dl>
-
-         </div> <!-- row ends -->
-
-       </div>  <!-- text-container ends -->
-
-   </section> <!-- Testimonials Section End-->
-
-
-   <!-- Contact Section
-   ================================================== -->
-   <section id="contact">
-
-         <div class="row section-head">
-
-            <div class="two columns header-col">
-
-               <h1><span>Get In Touch.</span></h1>
-
-            </div>
-            
-            <div class="ten columns">                                    
-
-                  <p class="lead">Contact me <br></p>
-                     <a href="mailto:contact@anandan.in?Subject=Hello" target="_top"> contact@anandan.in </a>
-		  </p>
-
+            <div class="hero-pill-row">
+              <div class="pill pill-accent">Google Cloud Platform</div>
+              <div class="pill">Terraform & IaC</div>
+              <div class="pill">SRE & Observability</div>
+              <div class="pill">Containerisation</div>
+              <div class="pill">DevOps culture</div>
             </div>
 
-         </div>
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-primary">
+                Get in touch
+              </a>
+              <a href="#projects" class="btn btn-ghost">
+                View cloud projects
+              </a>
+            </div>
 
-      </div>
-
-   </section> <!-- Contact Section End-->
-
-
-   <!-- footer
-   ================================================== -->
-   <footer>
-
-      <div class="row">
-
-         <div class="twelve columns">
-
-                <ul class="social-links">
-                        <li><a href="https://github.com/anandan1998"><i class="fab fa-github"></i></a></li>                    
-                       
-                       <li><a href="https://twitter.com/anandan1998"><i class="fab fa-twitter"></i></a></li>
-                       
-                       <li><a href="https://www.linkedin.com/in/ananthapathmanabhan-r-90820717a/"><i class="fab fa-linkedin"></i></a></li>
-                    </ul>
-
+            <p class="hero-footnote">
+              Currently building automation and monitoring solutions at
+              <strong>Ericsson R&amp;D</strong>.
+            </p>
           </div>
 
-         <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
+          <div class="hero-right">
+            <div class="hero-card">
+              <div class="hero-card-header">
+                <div class="hero-card-title">
+                  GCP · Platform Snapshot
+                  <span>What I've been working with recently</span>
+                </div>
+                <div class="hero-card-badge">SRE / Cloud</div>
+              </div>
 
-      </div>
+              <div class="hero-metrics">
+                <div class="metric-card">
+                  <div class="metric-label">Infra as Code</div>
+                  <div class="metric-value">
+                    Terraform
+                    <span>projects, modules, policies</span>
+                  </div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-label">Services</div>
+                  <div class="metric-value">
+                    GKE · Cloud Run
+                    <span>pub/sub, IAM, load balancers</span>
+                  </div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-label">Observability</div>
+                  <div class="metric-value">
+                    Grafana
+                    <span>SLIs, SLOs, alerts</span>
+                  </div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-label">Languages</div>
+                  <div class="metric-value">
+                    Go · Python
+                    <span>for automation and services</span>
+                  </div>
+                </div>
+              </div>
 
-   </footer> <!-- Footer End-->
+              <div class="hero-card-footer">
+                <span class="hero-chip">Focus: secure, automated, repeatable platforms</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-   <!-- Java Script
-   ================================================== -->
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-   <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
-   <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+      <!-- ABOUT / SKILLS -->
+      <section class="section" id="about">
+        <div class="section-header">
+          <div class="section-kicker">Profile</div>
+          <div class="section-title">About me</div>
+        </div>
+        <div class="two-col">
+          <div>
+            <div class="card">
+              <p style="font-size: 0.85rem; line-height: 1.7; margin: 0;">
+                I am a Cloud and DevOps Engineer with experience building
+                <strong>GCP-based platforms</strong>, automation, and
+                observability tooling. I enjoy working close to both
+                infrastructure and application teams, helping them ship safely
+                and confidently.
+              </p>
+              <p
+                style="
+                  font-size: 0.85rem;
+                  line-height: 1.7;
+                  margin-top: 0.55rem;
+                  margin-bottom: 0;
+                "
+              >
+                My background spans full-stack engineering, site reliability
+                work, and research. That mix helps me understand how decisions
+                at the infrastructure level affect developer experience, system
+                behaviour, and end users.
+              </p>
+            </div>
+          </div>
+          <div id="skills">
+            <div class="section-header" style="margin-bottom: 0.5rem;">
+              <div class="section-kicker">Stack</div>
+              <div class="section-title">Cloud & tooling</div>
+            </div>
+            <div class="skills-grid">
+              <div class="card">
+                <div class="skills-category-title">Cloud & Infra</div>
+                <div class="skills-badges">
+                  <span class="skills-badge">Google Cloud Platform</span>
+                  <span class="skills-badge">GKE</span>
+                  <span class="skills-badge">Cloud Run</span>
+                  <span class="skills-badge">Pub/Sub</span>
+                  <span class="skills-badge">IAM</span>
+                  <span class="skills-badge">Load Balancers</span>
+                  <span class="skills-badge">AWS (EC2, S3, Lambda)</span>
+                </div>
+              </div>
+              <div class="card">
+                <div class="skills-category-title">DevOps & SRE</div>
+                <div class="skills-badges">
+                  <span class="skills-badge">Terraform</span>
+                  <span class="skills-badge">Docker</span>
+                  <span class="skills-badge">Kubernetes</span>
+                  <span class="skills-badge">GitHub / GitLab CI</span>
+                  <span class="skills-badge">SLIs & SLOs</span>
+                  <span class="skills-badge">Incident debugging</span>
+                </div>
+              </div>
+              <div class="card">
+                <div class="skills-category-title">Languages</div>
+                <div class="skills-badges">
+                  <span class="skills-badge">Go</span>
+                  <span class="skills-badge">Python</span>
+                  <span class="skills-badge">TypeScript / JavaScript</span>
+                  <span class="skills-badge">C / C#</span>
+                  <span class="skills-badge">Java</span>
+                  <span class="skills-badge">Bash</span>
+                  <span class="skills-badge">SQL</span>
+                </div>
+              </div>
+              <div class="card">
+                <div class="skills-category-title">Tools & Frameworks</div>
+                <div class="skills-badges">
+                  <span class="skills-badge">React</span>
+                  <span class="skills-badge">Next.js</span>
+                  <span class="skills-badge">Unity</span>
+                  <span class="skills-badge">Grafana</span>
+                  <span class="skills-badge">Prometheus</span>
+                  <span class="skills-badge">TensorFlow</span>
+                  <span class="skills-badge">Git</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-   <script src="js/jquery.flexslider.js"></script>
-   <script src="js/waypoints.js"></script>
-   <script src="js/jquery.fittext.js"></script>
-   <script src="js/magnific-popup.js"></script>
-   <script src="js/init.js"></script>
+      <!-- EXPERIENCE -->
+      <section class="section" id="experience">
+        <div class="section-header">
+          <div class="section-kicker">Experience</div>
+          <div class="section-title">Where I've been working</div>
+          <p class="section-desc">
+            A mix of SRE, cloud, and full-stack experience that led me towards
+            platform and cloud engineering.
+          </p>
+        </div>
 
+        <div class="card">
+          <div class="card-title">
+            Software Engineer Intern – Site Reliability Engineering
+          </div>
+          <div class="card-subtitle">Ericsson R&amp;D · Stockholm, Sweden</div>
+          <div class="card-meta">Jan 2025 – Present</div>
+          <ul class="card-list">
+            <li>
+              Build automation and infrastructure for a Google Cloud–based
+              Network-as-a-Service platform.
+            </li>
+            <li>
+              Develop backend services in Go and Python, focusing on reliability
+              and reduced operational toil.
+            </li>
+            <li>
+              Use Terraform, Docker, Kubernetes, and CI/CD to deliver repeatable
+              environments.
+            </li>
+            <li>
+              Implement monitoring, alerting, and dashboards using GCP
+              Monitoring and Grafana.
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Frontend Developer</div>
+          <div class="card-subtitle">KeyValue Software Systems · Kerala, India</div>
+          <div class="card-meta">Dec 2021 – Jun 2023</div>
+          <ul class="card-list">
+            <li>Built production web interfaces using React and Next.js.</li>
+            <li>Worked with APIs, state management, and performance tuning.</li>
+            <li>
+              Collaborated with backend and DevOps teams, which triggered my
+              interest in cloud and platform work.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="section" id="projects">
+        <div class="section-header">
+          <div class="section-kicker">Projects</div>
+          <div class="section-title">Cloud, automation & development work</div>
+          <p class="section-desc">
+            A selection of recent projects focused on GCP, automation,
+            reliability, and software development. More details available on request.
+          </p>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <div class="card">
+              <div class="card-title">Cloud Monitoring Automation</div>
+              <div class="card-meta">
+                Go · Terraform · GCP · Grafana · GitLab CI
+              </div>
+              <ul class="card-list">
+                <li>
+                  Automated provisioning of SLIs, SLOs, and alert policies for
+                  new services using Terraform modules.
+                </li>
+                <li>
+                  Integrated metrics into Grafana dashboards with event-driven
+                  notifications, improving fault detection.
+                </li>
+                <li>
+                  Reduced manual setup by standardising monitoring across GCP
+                  projects.
+                </li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <div class="card-title">Infrastructure Management Service</div>
+              <div class="card-meta">
+                Go · REST APIs · Docker · Cloud Run
+              </div>
+              <ul class="card-list">
+                <li>
+                  Built microservices to orchestrate infrastructure workflows
+                  and cross-system integrations.
+                </li>
+                <li>
+                  Implemented structured logging, health checks, and CI/CD
+                  pipelines for safe rollouts.
+                </li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <div class="card-title">Land Mapping System</div>
+              <div class="card-meta">Computer Vision · Mapping · Python</div>
+              <ul class="card-list">
+                <li>
+                  Developed a system to separate land properties using maps and
+                  automated boundary detection.
+                </li>
+                <li>
+                  Applied image processing techniques for accurate land
+                  segmentation.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div class="card">
+              <div class="card-title">AI Board Game Player</div>
+              <div class="card-meta">Python · Minimax · Algorithmic design</div>
+              <ul class="card-list">
+                <li>
+                  Implemented a Minimax-based game agent with alpha-beta
+                  pruning and configurable difficulty levels.
+                </li>
+                <li>
+                  Built test harnesses and instrumentation to validate
+                  correctness and performance.
+                </li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <div class="card-title">Google Assistant Actions</div>
+              <div class="card-meta">Dialogflow · Node.js · Voice AI</div>
+              <ul class="card-list">
+                <li>
+                  Developed and deployed Google Actions: "Science Bro" (English)
+                  and "मुद्रा खोज" (Hindi).
+                </li>
+                <li>
+                  Integrated natural language processing for conversational
+                  interactions.
+                </li>
+                <li>Successfully published on Google Assistant platform.</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <div class="card-title">Game Development with Unity</div>
+              <div class="card-meta">Unity · C# · Game Design</div>
+              <ul class="card-list">
+                <li>Created 2D platformer game "Dashing Rider" with Unity.</li>
+                <li>
+                  Developed 3D obstacle course game with physics-based mechanics.
+                </li>
+                <li>Implemented game mechanics, UI, and player progression systems.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION & ACHIEVEMENTS -->
+      <section class="section" id="education">
+        <div class="section-header">
+          <div class="section-kicker">Education</div>
+          <div class="section-title">Academic Background & Research</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            Master of Science, Computer Science
+          </div>
+          <div class="card-subtitle">Uppsala University · Uppsala, Sweden</div>
+          <div class="card-meta">2023 – 2025</div>
+          <ul class="card-list">
+            <li>
+              <strong>Thesis:</strong> <em>Modelling Driver Interaction in Semi-Autonomous Vehicles Using Markov Chains</em> – 
+              Data-driven modelling of state transitions (Normal/Alert/Takeover) for adaptive autonomous systems
+            </li>
+            <li>
+              <strong>Publication:</strong> <em>Blending Participatory Design and Artificial Awareness for Trustworthy Autonomous Vehicles</em> – 
+              Accepted at IEEE RO-MAN 2025
+            </li>
+            <li>
+              Developed behavioural models using Markov chains to analyse driver interaction, trust, and transparency in semi-autonomous systems
+            </li>
+            <li>Focus on human-AI interaction, autonomous systems, and data-driven modelling</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            Bachelor of Technology, Computer Science and Engineering
+          </div>
+          <div class="card-subtitle">Rajiv Gandhi Institute of Technology, Kottayam · India</div>
+          <div class="card-meta">2017 – 2021</div>
+          <ul class="card-list">
+            <li>Chairman of WASD (Game Developers and Gamers Society)</li>
+            <li>Active member of Google Developer Group (GDG), ISTE, IEEE, and Tinkerhub</li>
+            <li>Participated in Techradiance'19 Grand Final (ML Championship) in association with IIT Bombay Techfest</li>
+            <li>Earned Google Cloud badges for completing Qwiklabs quests including AI/ML and Kubernetes Engine</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact">
+        <div class="section-header">
+          <div class="section-kicker">Contact</div>
+          <div class="section-title">Let's talk</div>
+        </div>
+
+        <div class="card contact-card">
+          <div class="contact-main">
+            <strong>Open to cloud / platform / SRE roles</strong>
+            <span style="color: var(--text-muted); font-size: 0.82rem;">
+              The best way to reach me is via email or LinkedIn. I am happy to
+              talk about roles around GCP, automation, and platform
+              engineering.
+            </span>
+          </div>
+          <div class="social-links">
+            <a
+              href="mailto:contact@anandan.in"
+              class="social-link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Email
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ananthapathmanabhan-r-90820717a"
+              class="social-link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/anandan1998"
+              class="social-link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://twitter.com/anandan1998"
+              class="social-link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Twitter
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        © <span id="year"></span> Ananthapathmanabhan Ratheesh Kumar · Built with HTML, CSS and a love
+        for clean infrastructure.
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Add active state to nav links on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.pageYOffset >= sectionTop - 100) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
 </body>
-
 </html>
